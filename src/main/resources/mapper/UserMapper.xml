@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wmt.interview.dao.UserMapper">
+
+    <select id="selectAllUser" resultType="com.wmt.interview.entity.User">
+        SELECT uid, uname, account_number, upassword, ustate
+        FROM user
+        WHERE ustate = 1;
+    </select>
+
+    <select id="login" resultType="userEntity">
+        SELECT uid, uname, account_number, upassword, ustate
+        FROM user
+        WHERE  account_number = #{accountNumber} and upassword = #{upassword} and ustate = 1
+    </select>
+
+    <insert id="register" parameterType="userEntity">
+        insert into user(uid, uname, account_number, upassword)
+        values (#{uid},#{uname},#{accountNumber},#{upassword})
+    </insert>
+
+
+</mapper>
